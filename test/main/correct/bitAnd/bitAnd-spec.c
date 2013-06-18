@@ -10,6 +10,6 @@ int bitAnd(int x, int y) {
 	/* this is true by demorgan's laws */
 
 	int i;
-	i = (x & y) | 0x1;
+	i = (x & y);
 	return i;
 }

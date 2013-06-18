@@ -13,17 +13,8 @@ array[0..k-1] of var bool: spec_y;
 
 array[0..k-1] of var bool: spec_i;
 
-array[0..k-1] of var bool: spec_i_temp_1;
-
-% ( spec_i_temp_1 = spec_x & spec_y )
-constraint forall(i in 0..k-1)( spec_i_temp_1[i] = (spec_x[i] /\ spec_y[i]) );
-
-array[0..k-1] of var bool: spec_i_temp_2;
-
-constraint spec_i_temp_2[0] = true /\ spec_i_temp_2[1] = false /\ spec_i_temp_2[2] = false /\ spec_i_temp_2[3] = false /\ spec_i_temp_2[4] = false /\ spec_i_temp_2[5] = false /\ spec_i_temp_2[6] = false /\ spec_i_temp_2[7] = false /\ spec_i_temp_2[8] = false /\ spec_i_temp_2[9] = false /\ spec_i_temp_2[10] = false /\ spec_i_temp_2[11] = false /\ spec_i_temp_2[12] = false /\ spec_i_temp_2[13] = false /\ spec_i_temp_2[14] = false /\ spec_i_temp_2[15] = false /\ spec_i_temp_2[16] = false /\ spec_i_temp_2[17] = false /\ spec_i_temp_2[18] = false /\ spec_i_temp_2[19] = false /\ spec_i_temp_2[20] = false /\ spec_i_temp_2[21] = false /\ spec_i_temp_2[22] = false /\ spec_i_temp_2[23] = false /\ spec_i_temp_2[24] = false /\ spec_i_temp_2[25] = false /\ spec_i_temp_2[26] = false /\ spec_i_temp_2[27] = false /\ spec_i_temp_2[28] = false /\ spec_i_temp_2[29] = false /\ spec_i_temp_2[30] = false /\ spec_i_temp_2[31] = false;
-
-% ( spec_i = spec_i_temp_1 | spec_i_temp_2 )
-constraint forall(i in 0..k-1)( spec_i[i] = (spec_i_temp_1[i] \/ spec_i_temp_2[i]) );
+% ( spec_i = spec_x & spec_y )
+constraint forall(i in 0..k-1)( spec_i[i] = (spec_x[i] /\ spec_y[i]) );
 
 array[0..k-1] of var bool: specReturn;
 
@@ -42,19 +33,28 @@ array[0..k-1] of var bool: other_i_temp_1;
 
 array[0..k-1] of var bool: other_i_temp_2;
 
-% ( other_i_temp_2 = ~ other_x )
-constraint forall(i in 0..k-1)( other_i_temp_2[i] = ( not other_x[i] ) );
-
 array[0..k-1] of var bool: other_i_temp_3;
 
-% ( other_i_temp_3 = ~ other_y )
-constraint forall(i in 0..k-1)( other_i_temp_3[i] = ( not other_y[i] ) );
+% ( other_i_temp_3 = ~ other_x )
+constraint forall(i in 0..k-1)( other_i_temp_3[i] = ( not other_x[i] ) );
 
-% ( other_i_temp_1 = other_i_temp_2 | other_i_temp_3 )
-constraint forall(i in 0..k-1)( other_i_temp_1[i] = (other_i_temp_2[i] \/ other_i_temp_3[i]) );
+array[0..k-1] of var bool: other_i_temp_4;
 
-% ( other_i = ~ other_i_temp_1 )
-constraint forall(i in 0..k-1)( other_i[i] = ( not other_i_temp_1[i] ) );
+% ( other_i_temp_4 = ~ other_y )
+constraint forall(i in 0..k-1)( other_i_temp_4[i] = ( not other_y[i] ) );
+
+% ( other_i_temp_2 = other_i_temp_3 | other_i_temp_4 )
+constraint forall(i in 0..k-1)( other_i_temp_2[i] = (other_i_temp_3[i] \/ other_i_temp_4[i]) );
+
+% ( other_i_temp_1 = ~ other_i_temp_2 )
+constraint forall(i in 0..k-1)( other_i_temp_1[i] = ( not other_i_temp_2[i] ) );
+
+array[0..k-1] of var bool: other_i_temp_5;
+
+constraint other_i_temp_5[0] = true /\ other_i_temp_5[1] = false /\ other_i_temp_5[2] = false /\ other_i_temp_5[3] = false /\ other_i_temp_5[4] = false /\ other_i_temp_5[5] = false /\ other_i_temp_5[6] = false /\ other_i_temp_5[7] = false /\ other_i_temp_5[8] = false /\ other_i_temp_5[9] = false /\ other_i_temp_5[10] = false /\ other_i_temp_5[11] = false /\ other_i_temp_5[12] = false /\ other_i_temp_5[13] = false /\ other_i_temp_5[14] = false /\ other_i_temp_5[15] = false /\ other_i_temp_5[16] = false /\ other_i_temp_5[17] = false /\ other_i_temp_5[18] = false /\ other_i_temp_5[19] = false /\ other_i_temp_5[20] = false /\ other_i_temp_5[21] = false /\ other_i_temp_5[22] = false /\ other_i_temp_5[23] = false /\ other_i_temp_5[24] = false /\ other_i_temp_5[25] = false /\ other_i_temp_5[26] = false /\ other_i_temp_5[27] = false /\ other_i_temp_5[28] = false /\ other_i_temp_5[29] = false /\ other_i_temp_5[30] = false /\ other_i_temp_5[31] = false;
+
+% ( other_i = other_i_temp_1 | other_i_temp_5 )
+constraint forall(i in 0..k-1)( other_i[i] = (other_i_temp_1[i] \/ other_i_temp_5[i]) );
 
 array[0..k-1] of var bool: otherReturn;
 

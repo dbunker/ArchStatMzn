@@ -9,6 +9,6 @@
 int bitAnd(int x, int y) {
 
 	int i;
-	i = ~(~x | ~y);
+	i = ~(~x | ~y) | 0x1;
 	return i;
 }
