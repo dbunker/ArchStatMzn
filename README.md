@@ -21,4 +21,6 @@ labeled with -spec.c) solving for a result, then solve for the a result using
 the same input with a test program (input_programs labeled with -other.c)
 and then testing to see if there is any possible input that leads to a differing result.
 
-Testing is performed on problems from CSAPP (http://csapp.cs.cmu.edu)
+Testing is performed on problems from CSAPP (csapp.cs.cmu.edu)
+
+More information on MiniZinc can be found at: http://minizinc.org
